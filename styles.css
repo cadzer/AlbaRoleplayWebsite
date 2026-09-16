@@ -10,7 +10,7 @@
     --gta-yellow: #f5c518;
     --gta-orange: #ff6b00;
     --gta-red: #e63946;
-    --gta-blue: #1d3557;
+    --gta-blue: #00d4ff;
     --gta-green: #2d6a4f;
     --gta-purple: #7b2d8b;
     
@@ -776,27 +776,45 @@ body {
 
 .staff-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .staff-card {
     background: var(--bg-card);
     text-align: center;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     border-top: 3px solid var(--gta-yellow);
     transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.staff-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(245, 197, 24, 0.05) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .staff-card:hover {
     background: var(--bg-card-hover);
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(245, 197, 24, 0.1);
 }
 
 .staff-avatar {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1rem;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.25rem;
+    position: relative;
+    z-index: 1;
 }
 
 .avatar-placeholder {
@@ -805,42 +823,52 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--bg-dark);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: var(--transition-normal);
+}
+
+.staff-card:hover .avatar-placeholder {
+    transform: scale(1.05);
 }
 
 .avatar-placeholder.owner { background: var(--gta-yellow); }
 .avatar-placeholder.admin { background: var(--gta-orange); }
-.avatar-placeholder.leadmod { background: var(--gta-red); }
 .avatar-placeholder.mod { background: var(--text-secondary); }
 
 .staff-name {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 0.25rem;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .staff-role {
     display: inline-block;
     font-family: var(--font-heading);
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: var(--gta-yellow);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
 }
 
 .staff-social {
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 .social-link {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -848,9 +876,13 @@ body {
     color: var(--bg-dark);
     text-decoration: none;
     transition: var(--transition-fast);
+    font-size: 1.1rem;
 }
 
 .social-link:hover {
+    background: var(--gta-orange);
+    transform: scale(1.1);
+}
     background: var(--gta-orange);
     transform: scale(1.1);
 }
@@ -1429,6 +1461,11 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.blue-text {
+    color: var(--gta-blue);
+    font-weight: 600;
 }
 
 /* Rule Sublist */
